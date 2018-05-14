@@ -1,9 +1,15 @@
 <script>
-  import { mapGetters } from 'vuex';
+  import { mapGetters, mapMutations } from 'vuex';
   import TopicList from '@/components/TopicList';
 
   export default {
     name: 'TopicDisplay',
+
+    watch: {
+      currentPage() {
+        this.$vuetify.goTo('.topic-display');
+      }
+    },
 
     components: {
       TopicList,
@@ -13,23 +19,36 @@
       ...mapGetters([
         'stickiedTopics',
         'nonStickiedTopic',
-      ])
+        'totalPages',
+      ]),
+
+      currentPage() {
+        return this.$store.state.page;
+      },
+    },
+
+    methods: {
+      ...mapMutations([
+        'updatePage'
+      ]),
     }
   }
 </script>
 
 <template>
-  <div>
-    <h2>Topics</h2>
-
-    <div class='topic-list topic-list--stickied'>
+  <div class='topic-display'>
+    <div class='topic-list-wrapper topic-list--stickied'>
       <topic-list :topics='stickiedTopics'></topic-list>
     </div>
 
-    <hr />
-
-    <div class='topic-list topic-list--non-stickied'>
+    <div class='topic-list-wrapper topic-list--non-stickied'>
       <topic-list :topics='nonStickiedTopic'></topic-list>
     </div>
+
+    <v-pagination
+      :length="totalPages"
+      :value="currentPage"
+      @input='updatePage'
+    />
   </div>
 </template>

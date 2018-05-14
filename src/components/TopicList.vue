@@ -1,5 +1,4 @@
 <script>
-  import { mapActions } from 'vuex';
   import TopicListItem from '@/components/TopicListItem';
 
   export default {
@@ -17,17 +16,11 @@
         },
       }
     },
-
-    methods: {
-      ...mapActions([
-        'makeSticky'
-      ]),
-    }
   }
 </script>
 
 <template>
-  <ul>
+  <ul class='topic-list'>
     <topic-list-item
       v-for='(topic, index) in topics'
       :key='index'
@@ -35,3 +28,9 @@
     />
   </ul>
 </template>
+
+<style scoped>
+  .topic-list {
+    list-style-type: none;
+  }
+</style>

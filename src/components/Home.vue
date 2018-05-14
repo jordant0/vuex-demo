@@ -15,8 +15,6 @@
 
 <template>
   <div>
-    <h1>Hello World!</h1>
-
     <topic-display></topic-display>
   </div>
 </template>
