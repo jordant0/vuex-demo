@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { topics } from '@/data/topics.js';
-import { users } from '@/data/users.js';
+import { topics, users } from '@/data/data.js';
 
 Vue.use(Vuex);
 
