@@ -27,7 +27,7 @@ for (var i = 0; i < NUM_TOPICS; ++i) {
     userId: users[Math.floor(Math.random() * NUM_USERS)].id,
     points: faker.random.number(50),
     createdAt: faker.date.past(),
-    spiced: false,
+    userScore: 0,
     sticky: false,
   });
 }

@@ -43,16 +43,25 @@ export const store = new Vuex.Store({
       state.page = page;
     },
 
-    toggleSticky(state, topicId) {
-      state.topics[topicId].sticky = !state.topics[topicId].sticky;
+    toggleSticky(state, id) {
+      state.topics[id].sticky = !state.topics[id].sticky;
     },
 
-    spiceUp(state, topicId) {
-      state.topics[topicId].points++;
+    toggleUserScore(state, payload) {
+      var topic = state.topics[payload.id];
+
+      if(topic.userScore !== payload.points) {
+        topic.points = topic.points - topic.userScore + payload.points;
+        topic.userScore = payload.points;
+      }
+      else {
+        topic.points -= topic.userScore;
+        topic.userScore = 0;
+      }
     },
 
-    toggleFollow(state, userId) {
-      state.users[userId].followed = !state.users[userId].followed;
+    toggleFollow(state, id) {
+      state.users[id].followed = !state.users[id].followed;
     },
   },
 });

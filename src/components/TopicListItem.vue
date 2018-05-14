@@ -1,5 +1,5 @@
 <script>
-  import { mapMutations } from 'vuex';
+  import TopicActions from '@/components/TopicActions';
   import UserItem from '@/components/UserItem';
 
   export default {
@@ -7,6 +7,7 @@
 
     components: {
       UserItem,
+      TopicActions,
     },
 
     props: {
@@ -27,12 +28,6 @@
         return (new Date(this.topic.createdAt)).toLocaleString();
       },
     },
-
-    methods: {
-      ...mapMutations([
-        'toggleSticky'
-      ]),
-    }
   }
 </script>
 
@@ -55,14 +50,7 @@
         {{ topic.post }}
       </div>
 
-      <div class='topic-item_actions'>
-        <v-btn v-if='topic.sticky' @click='toggleSticky(topic.id)'>
-          Unsticky
-        </v-btn>
-        <v-btn v-else color="primary" @click='toggleSticky(topic.id)'>
-          Make Sticky
-        </v-btn>
-      </div>
+      <topic-actions :topic='topic' />
     </div>
   </li>
 </template>
