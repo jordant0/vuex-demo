@@ -32,7 +32,15 @@
 </script>
 
 <template>
-  <li class='topic-item'>
+  <li :class="{'topic-item': true, 'elevation-3 topic-item--sticky': topic.sticky}">
+    <v-icon
+      v-if='topic.sticky'
+      large
+      class='topic-item_sticky-icon'
+    >
+      star
+    </v-icon>
+
     <div class='topic-item_author'>
       <user-item :user='author' />
     </div>
@@ -57,7 +65,28 @@
 
 <style scoped>
   .topic-item {
+    position: relative;
     display: flex;
+    padding: 30px 30px;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  .topic-item--sticky {
+    border-bottom: 0;
+    margin-bottom: 20px;
+  }
+
+  .topic-item_sticky-icon {
+    color: gold;
+    position: absolute;
+    top: 12px;
+    left: 12px;
+  }
+
+  .topic-item_read-action {
+    position: absolute;
+    top: 0px;
+    right: 16px;
   }
 
   .topic-item_author {

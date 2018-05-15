@@ -28,13 +28,18 @@ export const store = new Vuex.Store({
     },
 
     nonStickiedTopic: state => {
-      var start = (state.page - 1) * state.perPage,
-          end = start + state.perPage;
-      return Object.values(state.topics).filter(topic => !topic.sticky).slice(start, end);
+      return Object.values(state.topics).filter(topic => !topic.sticky);
     },
 
-    totalPages: state => {
-      return Math.ceil(Object.values(state.topics).filter(topic => !topic.sticky).length / state.perPage);
+    currentPageTopics: (state, getters) => {
+      var start = (state.page - 1) * state.perPage,
+          end = start + state.perPage;
+
+      return getters.nonStickiedTopic.slice(start, end);
+    },
+
+    totalPages: (state, getters) => {
+      return Math.ceil(getters.nonStickiedTopic.length / state.perPage);
     },
   },
 
@@ -61,7 +66,15 @@ export const store = new Vuex.Store({
     },
 
     toggleFollow(state, id) {
-      state.users[id].followed = !state.users[id].followed;
+      var user = state.users[id]
+      user.followed = !user.followed;
+
+      if(user.followed) {
+        user.followers++;
+      }
+      else {
+        user.followers--;
+      }
     },
   },
 });

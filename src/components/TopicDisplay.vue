@@ -7,7 +7,7 @@
 
     watch: {
       currentPage() {
-        this.$vuetify.goTo('.topic-display');
+        this.$vuetify.goTo('.topic-list--regular');
       }
     },
 
@@ -19,6 +19,7 @@
       ...mapGetters([
         'stickiedTopics',
         'nonStickiedTopic',
+        'currentPageTopics',
         'totalPages',
       ]),
 
@@ -37,13 +38,24 @@
 
 <template>
   <div class='topic-display'>
-    <div class='topic-list-wrapper topic-list--stickied'>
-      <topic-list :topics='stickiedTopics'></topic-list>
-    </div>
+    <topic-list
+      :topics='stickiedTopics'
+      :stickied='true'
+      class='topic-list--sticky'
+    />
 
-    <div class='topic-list-wrapper topic-list--non-stickied'>
-      <topic-list :topics='nonStickiedTopic'></topic-list>
-    </div>
+    <h2 class='topic-list_header'>
+      <v-badge right>
+        <span slot="badge">{{ nonStickiedTopic.length }}</span>
+        Topics
+      </v-badge>
+    </h2>
+
+    <topic-list
+      :topics='currentPageTopics'
+      :stickied='false'
+      class='topic-list--regular'
+    />
 
     <v-pagination
       :length="totalPages"
@@ -52,3 +64,26 @@
     />
   </div>
 </template>
+
+<style scope>
+  .topic-display {
+    margin: 0 30px;
+  }
+
+  .topic-list_header {
+    font-size: 32px;
+    font-weight: 400;
+    padding: 8px 30px;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  .badge__badge {
+    top: 0;
+  }
+
+  .pagination {
+    margin: 30px;
+    display: flex;
+    justify-content: center;
+  }
+</style>

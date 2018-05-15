@@ -1,8 +1,12 @@
 <script>
-  import { mapMutations } from 'vuex';
+  import UserFollow from '@/components/UserFollow';
 
   export default {
     name: 'UserItem',
+
+    components: {
+      UserFollow,
+    },
 
     props: {
       user: {
@@ -18,40 +22,31 @@
         return `${this.user.firstName} ${this.user.lastName}`;
       },
     },
-
-    methods: {
-      ...mapMutations([
-        'toggleFollow'
-      ]),
-    }
   }
 </script>
 
 <template>
   <div class='user-item'>
-    <v-avatar>
-      <img :src="user.avatar" :title='fullName'>
-    </v-avatar>
+    <div class='user-item_info'>
+      <v-avatar>
+        <img :src="user.avatar" :title='fullName'>
+      </v-avatar>
 
-    <div class='user-item_real-name'>
-      {{ fullName }}
-    </div>
+      <div class='user-item_real-name'>
+        {{ fullName }}
+      </div>
 
-    <div class='user-item_user-name'>
-      {{ user.userName }}
+      <div class='user-item_user-name'>
+        {{ user.userName }}
+      </div>
     </div>
 
     <div class='user-item_actions'>
-      <v-tooltip v-if='user.followed' top>
-        <v-btn slot="activator" color="success" small @click='toggleFollow'>
-          Followed
-          <v-icon small>done</v-icon>
-        </v-btn>
-        <span>Unfollow</span>
-      </v-tooltip>
-      <v-btn v-else small @click='toggleFollow(user.id)'>
-        Follow
-      </v-btn>
+      <div class='user-item_followers'>
+        {{ user.followers }} Followers
+      </div>
+
+      <user-follow :user='user' />
     </div>
   </div>
 </template>
@@ -59,6 +54,10 @@
 <style scoped>
   .user-item {
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
   }
 
   .user-item_real-name {
@@ -67,7 +66,12 @@
     margin-top: 8px;
   }
 
-  .user-item_user-name {
+  .user-item_user-name,
+  .user-item_followers {
     color: #bdbdbd;
+  }
+
+  .user-item_followers {
+    margin: 12px 0;
   }
 </style>

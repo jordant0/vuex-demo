@@ -20,7 +20,7 @@
 </script>
 
 <template>
-  <ul class='topic-list'>
+  <ul v-if='topics.length' class='topic-list'>
     <topic-list-item
       v-for='(topic, index) in topics'
       :key='index'
