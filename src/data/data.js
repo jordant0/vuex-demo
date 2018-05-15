@@ -36,6 +36,14 @@ function newTopic() {
   };
 };
 
+function toDataObject(data) {
+  var dataObj = {};
+  for (var i = 0; i < data.length; ++i) {
+    dataObj[data[i].id] = data[i];
+  }
+  return dataObj;
+};
+
 for (var i = 0; i < NUM_USERS; ++i) {
   users.push(newUser());
 }
@@ -45,6 +53,8 @@ for (var i = 0; i < NUM_TOPICS; ++i) {
 }
 
 currentUserId = users[Math.floor(Math.random() * NUM_USERS)].id;
+users = toDataObject(users);
+topics = toDataObject(topics);
 
 export {
   users,

@@ -23,7 +23,7 @@
 
     computed: {
       author() {
-        return this.$store.state.users[this.topic.userId];
+        return this.$store.state.users.list[this.topic.userId];
       },
 
       isMyTopic() {
