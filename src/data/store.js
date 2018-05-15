@@ -19,6 +19,7 @@ export const store = new Vuex.Store({
       users: toDataObject(users),
       page: 1,
       perPage: 10,
+      viewingUser: null,
     };
   },
 
@@ -88,6 +89,15 @@ export const store = new Vuex.Store({
       }
       else {
         user.followers--;
+      }
+    },
+
+    updateViewingUser(state, id) {
+      if(state.viewingUser === id) {
+        state.viewingUser = null;
+      }
+      else {
+        state.viewingUser = id;
       }
     },
   },

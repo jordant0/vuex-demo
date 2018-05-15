@@ -14,6 +14,7 @@ for (var i = 0; i < NUM_USERS; ++i) {
     firstName: faker.name.firstName(),
     lastName: faker.name.lastName(),
     title: faker.name.jobTitle(),
+    company: faker.company.companyName(),
     avatar: faker.image.avatar(),
     followers: faker.random.number(500),
     followed: false,

@@ -23,7 +23,7 @@
 
 <template>
   <div class='user-follow'>
-    <v-tooltip v-if='user.followed' top>
+    <v-tooltip v-if='user.followed' bottom>
       <v-btn slot="activator" color="success" small @click='toggleFollow(user.id)'>
         Followed
         <v-icon small>done</v-icon>

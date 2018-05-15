@@ -24,19 +24,19 @@
     },
 
     computed: {
-      ...mapGetters([
-        'stickiedTopics',
-        'nonStickiedTopic',
-        'currentPageTopics',
-        'totalPages',
-      ]),
+      ...mapGetters({
+        stickies: 'stickiedTopics',
+        fullList: 'nonStickiedTopic',
+        getTopics: 'currentPageTopics',
+        pagesCount: 'totalPages',
+      }),
 
       currentPage() {
         return this.$store.state.page;
       },
 
       sortedTopicList() {
-        return this.currentPageTopics(this.sort);
+        return this.getTopics(this.sort);
       },
     },
 
@@ -51,14 +51,14 @@
 <template>
   <div class='topic-display'>
     <topic-list
-      :topics='stickiedTopics'
+      :topics='stickies'
       :stickied='true'
       class='topic-list--sticky'
     />
 
     <div class='topic-list_header'>
       <v-badge right>
-        <span slot="badge">{{ nonStickiedTopic.length }}</span>
+        <span slot="badge">{{ fullList.length }}</span>
         Topics
       </v-badge>
 
@@ -75,7 +75,7 @@
     />
 
     <v-pagination
-      :length="totalPages"
+      :length="pagesCount"
       :value="currentPage"
       @input='updatePage'
     />
