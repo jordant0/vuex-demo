@@ -52,6 +52,8 @@ for (var i = 0; i < NUM_TOPICS; ++i) {
   topics.push(newTopic());
 }
 
+topics[Math.floor(Math.random() * NUM_TOPICS)].sticky = true;
+
 currentUserId = users[Math.floor(Math.random() * NUM_USERS)].id;
 users = toDataObject(users);
 topics = toDataObject(topics);

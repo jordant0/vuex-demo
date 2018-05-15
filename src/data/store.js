@@ -22,6 +22,10 @@ export const store = new Vuex.Store({
   },
 
   mutations: {
+    updatePage(state, page) {
+      state.page = page;
+    },
+
     updateViewingCard(state, cardId) {
       if(state.viewingCard === cardId) {
         state.viewingCard = null;

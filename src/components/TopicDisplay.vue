@@ -8,7 +8,7 @@
 
     watch: {
       currentPage() {
-        this.$vuetify.goTo('.topic-list--regular');
+        this.$vuetify.goTo('.topic-list_wrapper');
         this.$store.commit('updateViewingCard', null);
       }
     },
@@ -45,6 +45,11 @@
       ...mapMutations([
         'updatePage'
       ]),
+
+      updateSort(value) {
+        this.sort = value;
+        this.updatePage(1);
+      },
     }
   }
 </script>
@@ -57,23 +62,25 @@
       class='topic-list--sticky'
     />
 
-    <div class='topic-list_header'>
-      <v-badge right>
-        <span slot="badge">{{ fullList.length }}</span>
-        Topics
-      </v-badge>
+    <div class='topic-list_wrapper'>
+      <div class='topic-list_header'>
+        <v-badge right>
+          <span slot="badge">{{ fullList.length }}</span>
+          Topics
+        </v-badge>
 
-      <v-tabs class='topic-list_sort' @input='sort = $event'>
-        <v-tab>Recent</v-tab>
-        <v-tab>Popular</v-tab>
-      </v-tabs>
+        <v-tabs class='topic-list_sort' @input='updateSort'>
+          <v-tab>Recent</v-tab>
+          <v-tab>Popular</v-tab>
+        </v-tabs>
+      </div>
+
+      <topic-list
+        :topics='sortedTopicList'
+        :stickied='false'
+        class='topic-list--regular'
+      />
     </div>
-
-    <topic-list
-      :topics='sortedTopicList'
-      :stickied='false'
-      class='topic-list--regular'
-    />
 
     <v-pagination
       :length="pagesCount"

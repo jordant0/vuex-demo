@@ -1,6 +1,7 @@
 <script>
   import { store } from '@/data/store';
   import Sidebar from '@/components/Sidebar';
+  import NewTopicButton from '@/components/NewTopicButton';
 
   export default {
     name: 'App',
@@ -9,6 +10,7 @@
 
     components: {
       Sidebar,
+      NewTopicButton,
     },
 
     data: () => ({
@@ -34,6 +36,8 @@
         <v-toolbar-title>Vuex Demo</v-toolbar-title>
 
         <v-spacer></v-spacer>
+
+        <new-topic-button />
 
         <v-btn icon @click.stop="drawer = !drawer">
           <v-icon medium>people</v-icon>

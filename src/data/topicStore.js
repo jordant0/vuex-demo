@@ -1,4 +1,6 @@
+import Vue from 'vue';
 import { topics } from '@/data/data.js';
+import { api } from '@/data/api.js';
 
 export const topicStore = {
   state() {
@@ -39,10 +41,6 @@ export const topicStore = {
   },
 
   mutations: {
-    updatePage(state, page) {
-      state.page = page;
-    },
-
     toggleSticky(state, id) {
       state.list[id].sticky = !state.list[id].sticky;
     },
@@ -59,5 +57,26 @@ export const topicStore = {
         topic.userScore = 0;
       }
     },
-  }
+
+    addTopic(state, newTopic) {
+      Vue.set(state.list, newTopic.id, newTopic);
+    },
+  },
+
+  actions: {
+    addTopic({ commit }, topicData) {
+      return new Promise((resolve, reject) => {
+        api.postNewTopic(topicData)
+        .then(
+          response => {  // success
+            commit('addTopic', response.topic);
+            resolve(response);
+          },
+          response => {  // failure
+            reject(response);
+          }
+        );
+      });
+    },
+  },
 }
