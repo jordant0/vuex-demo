@@ -1,4 +1,5 @@
 <script>
+  import { mapMutations } from 'vuex';
   import UserFollow from '@/components/UserFollow';
   import UserCard from '@/components/UserCard';
   import faker from 'faker';
@@ -33,16 +34,16 @@
     },
 
     methods: {
-      showCard() {
-        this.$store.commit('updateViewingCard', this.cardId);
-      },
+      ...mapMutations([
+        'updateViewingCard'
+      ]),
     }
   }
 </script>
 
 <template>
   <div class='user-item'>
-    <div class='user-item_info' @click='showCard'>
+    <div class='user-item_info' @click='updateViewingCard(cardId)'>
       <v-avatar>
         <img :src="user.avatar" :title='fullName'>
       </v-avatar>
@@ -81,6 +82,10 @@
     position: relative;
   }
 
+  .user-item_info:hover {
+    cursor: pointer;
+  }
+
   .user-item_real-name {
     font-size: 16px;
     font-weight: 600;
@@ -93,6 +98,10 @@
   }
 
   .user-item_followers {
-    margin: 12px 0;
+    margin-top: 12px;
+  }
+
+  .user-item .user-follow {
+    margin-top: 4px;
   }
 </style>

@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { topics, users } from '@/data/data.js';
+import { topics, users, currentUserId } from '@/data/data.js';
 
 Vue.use(Vuex);
 
@@ -13,10 +13,13 @@ function toDataObject(data) {
 }
 
 export const store = new Vuex.Store({
+  strict: true,
+
   state() {
     return {
       topics: toDataObject(topics),
       users: toDataObject(users),
+      currentUserId: currentUserId,
       page: 1,
       perPage: 10,
       viewingCard: null,
@@ -52,6 +55,14 @@ export const store = new Vuex.Store({
 
       return topics.slice(start, end);
     },
+
+    isCurrentUser: state => userId => {
+      return state.currentUserId === userId;
+    },
+
+    currentUser: state => {
+      return state.users[state.currentUserId];
+    },
   },
 
   mutations: {
@@ -80,16 +91,26 @@ export const store = new Vuex.Store({
       }
     },
 
-    toggleFollow(state, id) {
-      var user = state.users[id]
+    toggleFollow(state, payload) {
+      var user = state.users[payload.userId],
+          currentUser = payload.currentUser;
+
       user.followed = !user.followed;
 
       if(user.followed) {
         user.followers++;
+        currentUser.following++;
       }
       else {
         user.followers--;
+        currentUser.following--;
       }
+    },
+
+    updateUserData(state, payload) {
+      var user = state.users[payload.userId];
+
+      user[payload.field] = payload.value;
     },
 
     updateViewingCard(state, cardId) {
@@ -101,4 +122,13 @@ export const store = new Vuex.Store({
       }
     },
   },
+
+  actions: {
+    toggleFollow({ commit, getters }, userId) {
+      commit('toggleFollow', {
+        userId: userId,
+        currentUser: getters.currentUser,
+      });
+    },
+  }
 });

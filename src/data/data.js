@@ -4,10 +4,11 @@ const NUM_TOPICS = 20;
 const NUM_USERS = 10;
 
 let users = [],
-    topics = [];
+    topics = [],
+    currentUserId;
 
-for (var i = 0; i < NUM_USERS; ++i) {
-  users.push({
+function newUser() {
+  return {
     id: faker.random.number(),
     userName: faker.internet.userName(),
     email: faker.internet.exampleEmail(),
@@ -17,12 +18,13 @@ for (var i = 0; i < NUM_USERS; ++i) {
     company: faker.company.companyName(),
     avatar: faker.image.avatar(),
     followers: faker.random.number(500),
+    following: 0,
     followed: false,
-  });
-}
+  };
+};
 
-for (var i = 0; i < NUM_TOPICS; ++i) {
-  topics.push({
+function newTopic() {
+  return {
     id: faker.random.number(),
     subject: faker.hacker.phrase(),
     post: faker.lorem.paragraph(10),
@@ -31,10 +33,21 @@ for (var i = 0; i < NUM_TOPICS; ++i) {
     createdAt: faker.date.past(),
     userScore: 0,
     sticky: false,
-  });
+  };
+};
+
+for (var i = 0; i < NUM_USERS; ++i) {
+  users.push(newUser());
 }
+
+for (var i = 0; i < NUM_TOPICS; ++i) {
+  topics.push(newTopic());
+}
+
+currentUserId = users[Math.floor(Math.random() * NUM_USERS)].id;
 
 export {
   users,
-  topics
+  topics,
+  currentUserId,
 }

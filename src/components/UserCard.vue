@@ -1,4 +1,5 @@
 <script>
+  import CurrentUserMarker from '@/components/CurrentUserMarker';
   import UserFollow from '@/components/UserFollow';
 
   export default {
@@ -6,6 +7,7 @@
 
     components: {
       UserFollow,
+      CurrentUserMarker,
     },
 
     props: {
@@ -29,6 +31,10 @@
       fullName() {
         return `${this.user.firstName} ${this.user.lastName}`;
       },
+
+      currentUser() {
+        return this.$store.getters.isCurrentUser(this.user.id);
+      },
     },
   }
 </script>
@@ -36,6 +42,10 @@
 <template>
   <transition name="fade">
     <div v-if='showCard' class='user-card elevation-5'>
+      <current-user-marker v-if='currentUser' class='user-card--current-user'>
+        Your Profile
+      </current-user-marker>
+
       <div class='user-card_header'>
         <v-avatar size='80'>
           <img :src="user.avatar" :title='fullName'>
@@ -150,5 +160,11 @@
     align-items: center;
     justify-content: space-between;
     margin-top: 20px;
+  }
+
+  .user-card--current-user {
+    position: absolute;
+    top: 20px;
+    right: 20px;
   }
 </style>

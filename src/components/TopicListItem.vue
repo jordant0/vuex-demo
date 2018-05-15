@@ -1,11 +1,13 @@
 <script>
-  import TopicActions from '@/components/TopicActions';
+  import CurrentUserMarker from '@/components/CurrentUserMarker';
   import UserItem from '@/components/UserItem';
+  import TopicActions from '@/components/TopicActions';
 
   export default {
     name: 'TopicList',
 
     components: {
+      CurrentUserMarker,
       UserItem,
       TopicActions,
     },
@@ -22,6 +24,10 @@
     computed: {
       author() {
         return this.$store.state.users[this.topic.userId];
+      },
+
+      isMyTopic() {
+        return this.$store.getters.isCurrentUser(this.topic.userId);
       },
 
       timestamp() {
@@ -41,21 +47,27 @@
       star
     </v-icon>
 
+    <current-user-marker v-if='isMyTopic' class='topic-item--my-topic'>
+      Your Topic
+    </current-user-marker>
+
     <div class='topic-item_author'>
       <user-item :user='author' />
     </div>
 
     <div class='topic-item_content'>
-      <div class='topic-item_subject'>
-        {{ topic.subject }}
-      </div>
+      <div class='topic-item_text'>
+        <div class='topic-item_subject'>
+          {{ topic.subject }}
+        </div>
 
-      <div class='topic-item_timestamp'>
-        Posted {{ timestamp }}
-      </div>
+        <div class='topic-item_timestamp'>
+          Posted {{ timestamp }}
+        </div>
 
-      <div class='topic-item_post'>
-        {{ topic.post }}
+        <div class='topic-item_post'>
+          {{ topic.post }}
+        </div>
       </div>
 
       <topic-actions :topic='topic' />
@@ -103,5 +115,17 @@
   .topic-item_timestamp {
     color: #bdbdbd;
     margin-bottom: 16px;
+  }
+
+  .topic-item_content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .topic-item--my-topic {
+    position: absolute;
+    top: 20px;
+    left: 140px;
   }
 </style>

@@ -1,5 +1,5 @@
 <script>
-  import { mapMutations } from 'vuex';
+  import { mapActions } from 'vuex';
 
   export default {
     name: 'UserFollow',
@@ -13,8 +13,14 @@
       }
     },
 
+    computed: {
+      canFollow() {
+        return !this.$store.getters.isCurrentUser(this.user.id);
+      },
+    },
+
     methods: {
-      ...mapMutations([
+      ...mapActions([
         'toggleFollow'
       ]),
     }
@@ -22,7 +28,7 @@
 </script>
 
 <template>
-  <div class='user-follow'>
+  <div v-if='canFollow' class='user-follow'>
     <v-tooltip v-if='user.followed' bottom>
       <v-btn slot="activator" color="success" small @click='toggleFollow(user.id)'>
         Followed

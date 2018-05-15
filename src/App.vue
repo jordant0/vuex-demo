@@ -1,3 +1,22 @@
+<script>
+  import { store } from '@/data/store';
+  import Sidebar from '@/components/Sidebar';
+
+  export default {
+    name: 'App',
+
+    store,
+
+    components: {
+      Sidebar,
+    },
+
+    data: () => ({
+      drawer: false
+    }),
+  }
+</script>
+
 <template>
   <div id="app">
     <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
@@ -5,11 +24,12 @@
     <v-app>
       <v-navigation-drawer
         v-model="drawer"
+        width='400'
         fixed
         right
         app
       >
-      Do things
+        <sidebar />
       </v-navigation-drawer>
 
       <v-toolbar dark fixed app>
@@ -31,15 +51,6 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'App',
-
-  data: () => ({
-    drawer: false
-  }),
-}
-</script>
 
 <style>
   .container {
