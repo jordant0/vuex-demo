@@ -63,6 +63,10 @@ export const store = new Vuex.Store({
     currentUser: state => {
       return state.users[state.currentUserId];
     },
+
+    followedUsers: state => {
+      return Object.values(state.users).filter(user => user.followed);
+    },
   },
 
   mutations: {

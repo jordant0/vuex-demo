@@ -25,26 +25,34 @@
       Your Profile
     </current-user-marker>
 
-    <div class='user-profile_top'>
-      <v-avatar size='100' class='user-profile_avatar'>
-        <img :src="currentUser.avatar" :title='`${currentUser.firstName} ${currentUser.lastName}`'>
-      </v-avatar>
+    <v-form>
+      <div class='user-profile_top'>
+        <div class='user-profile_static'>
+          <v-avatar size='100' class='user-profile_avatar'>
+            <img :src="currentUser.avatar" :title='`${currentUser.firstName} ${currentUser.lastName}`'>
+          </v-avatar>
 
-      <div class='user-profile_real-name'>
-        <profile-edit field='firstName' label='First Name' />
+          <div class='user-profile_followers'>
+            {{ currentUser.followers }} Followers
+          </div>
+        </div>
 
-        <profile-edit field='lastName' label='Last Name' />
+        <div class='user-profile_real-name'>
+          <profile-edit field='firstName' label='First Name' />
+
+          <profile-edit field='lastName' label='Last Name' />
+        </div>
       </div>
-    </div>
 
-    <v-form class='user-profile_details'>
-      <profile-edit icon='person' field='userName' label='User Name' />
+      <div class='user-profile_details'>
+        <profile-edit icon='person' field='userName' label='User Name' />
 
-      <profile-edit icon='business_center' field='title' label='Title' />
+        <profile-edit icon='business_center' field='title' label='Title' />
 
-      <profile-edit icon='business' field='company' label='Company' />
+        <profile-edit icon='business' field='company' label='Company' />
 
-      <profile-edit icon='email' field='email' label='Email' />
+        <profile-edit icon='email' field='email' label='Email' />
+      </div>
     </v-form>
   </div>
 </template>
@@ -61,12 +69,14 @@
     right: 16px;
   }
 
-  .user-profile_avatar {
+  .user-profile_static {
     margin-right: 20px;
   }
 
-  .user-profile_real-name {
-    font-size: 30px;
+  .user-profile_followers {
+    text-align: center;
+    color: #bdbdbd;
+    margin-top: 12px;
   }
 
   .user-profile_details {

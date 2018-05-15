@@ -28,9 +28,3 @@
     />
   </ul>
 </template>
-
-<style scoped>
-  .topic-list {
-    list-style-type: none;
-  }
-</style>
