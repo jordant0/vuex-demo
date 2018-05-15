@@ -9,6 +9,7 @@
     watch: {
       currentPage() {
         this.$vuetify.goTo('.topic-list--regular');
+        this.$store.commit('updateViewingCard', null);
       }
     },
 
