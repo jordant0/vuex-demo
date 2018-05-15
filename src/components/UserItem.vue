@@ -1,6 +1,7 @@
 <script>
   import UserFollow from '@/components/UserFollow';
   import UserCard from '@/components/UserCard';
+  import faker from 'faker';
 
   export default {
     name: 'UserItem',
@@ -21,7 +22,7 @@
 
     data() {
       return {
-        cardShown: false,
+        cardId: faker.random.number(10000),
       };
     },
 
@@ -33,8 +34,7 @@
 
     methods: {
       showCard() {
-        this.cardShown = !this.cardShown;
-        this.$store.commit('updateViewingUser', this.user.id);
+        this.$store.commit('updateViewingCard', this.cardId);
       },
     }
   }
@@ -55,7 +55,7 @@
         {{ user.userName }}
       </div>
 
-      <user-card :user='user' :shown='cardShown'/>
+      <user-card :user='user' :cardId='cardId'/>
     </div>
 
     <div class='user-item_actions'>

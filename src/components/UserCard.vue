@@ -15,15 +15,15 @@
           return {};
         },
       },
-      shown: {
-        type: Boolean,
-        default: false,
+      cardId: {
+        type: Number,
+        default: '',
       },
     },
 
     computed: {
       showCard() {
-        return this.shown && this.$store.state.viewingUser === this.user.id;
+        return this.$store.state.viewingCard === this.cardId;
       },
 
       fullName() {

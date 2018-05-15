@@ -19,7 +19,7 @@ export const store = new Vuex.Store({
       users: toDataObject(users),
       page: 1,
       perPage: 10,
-      viewingUser: null,
+      viewingCard: null,
     };
   },
 
@@ -92,12 +92,12 @@ export const store = new Vuex.Store({
       }
     },
 
-    updateViewingUser(state, id) {
-      if(state.viewingUser === id) {
-        state.viewingUser = null;
+    updateViewingCard(state, cardId) {
+      if(state.viewingCard === cardId) {
+        state.viewingCard = null;
       }
       else {
-        state.viewingUser = id;
+        state.viewingCard = cardId;
       }
     },
   },
