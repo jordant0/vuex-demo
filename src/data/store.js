@@ -31,21 +31,35 @@ export const store = new Vuex.Store({
       return Object.values(state.topics).filter(topic => !topic.sticky);
     },
 
-    currentPageTopics: (state, getters) => {
-      var start = (state.page - 1) * state.perPage,
-          end = start + state.perPage;
-
-      return getters.nonStickiedTopic.slice(start, end);
-    },
-
     totalPages: (state, getters) => {
       return Math.ceil(getters.nonStickiedTopic.length / state.perPage);
+    },
+
+    currentPageTopics: (state, getters) => sort => {
+      var start = (state.page - 1) * state.perPage,
+          end = start + state.perPage,
+          topics = getters.nonStickiedTopic;
+
+      topics = topics.sort((topicA, topicB) => {
+        if(sort === '0') {
+          return new Date(topicB.createdAt) - new Date(topicA.createdAt);
+        }
+        else {
+          return topicB.points - topicA.points;
+        }
+      });
+
+      return topics.slice(start, end);
     },
   },
 
   mutations: {
     updatePage(state, page) {
       state.page = page;
+    },
+
+    updateSort(state, sort) {
+      state.sort = sort;
     },
 
     toggleSticky(state, id) {

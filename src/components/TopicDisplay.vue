@@ -1,6 +1,7 @@
 <script>
   import { mapGetters, mapMutations } from 'vuex';
   import TopicList from '@/components/TopicList';
+  import TopicSort from '@/components/TopicSort';
 
   export default {
     name: 'TopicDisplay',
@@ -13,6 +14,13 @@
 
     components: {
       TopicList,
+      TopicSort,
+    },
+
+    data() {
+      return {
+        sort: '0',
+      }
     },
 
     computed: {
@@ -25,6 +33,10 @@
 
       currentPage() {
         return this.$store.state.page;
+      },
+
+      sortedTopicList() {
+        return this.currentPageTopics(this.sort);
       },
     },
 
@@ -44,15 +56,20 @@
       class='topic-list--sticky'
     />
 
-    <h2 class='topic-list_header'>
+    <div class='topic-list_header'>
       <v-badge right>
         <span slot="badge">{{ nonStickiedTopic.length }}</span>
         Topics
       </v-badge>
-    </h2>
+
+      <v-tabs class='topic-list_sort' @input='sort = $event'>
+        <v-tab>Recent</v-tab>
+        <v-tab>Popular</v-tab>
+      </v-tabs>
+    </div>
 
     <topic-list
-      :topics='currentPageTopics'
+      :topics='sortedTopicList'
       :stickied='false'
       class='topic-list--regular'
     />
@@ -71,6 +88,7 @@
   }
 
   .topic-list_header {
+    position: relative;
     font-size: 32px;
     font-weight: 400;
     padding: 8px 30px;
@@ -79,6 +97,12 @@
 
   .badge__badge {
     top: 0;
+  }
+
+  .topic-list_sort {
+    position: absolute;
+    bottom: 0px;
+    right: 30px;
   }
 
   .pagination {
