@@ -6,7 +6,7 @@ import { topicStore } from '@/data/topicStore.js';
 Vue.use(Vuex);
 
 export const store = new Vuex.Store({
-  strict: true,
+  strict: process.env.NODE_ENV !== 'production',
 
   modules: {
     users: userStore,
