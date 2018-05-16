@@ -5,6 +5,21 @@ import { topicStore } from '@/data/topic-store';
 
 Vue.use(Vuex);
 
+export const mutations = {
+  updatePage(state, page) {
+    state.page = page;
+  },
+
+  updateViewingCard(state, cardId) {
+    if(state.viewingCard === cardId) {
+      state.viewingCard = null;
+    }
+    else {
+      state.viewingCard = cardId;
+    }
+  },
+};
+
 export const store = new Vuex.Store({
   strict: process.env.NODE_ENV !== 'production',
 
@@ -21,18 +36,5 @@ export const store = new Vuex.Store({
     };
   },
 
-  mutations: {
-    updatePage(state, page) {
-      state.page = page;
-    },
-
-    updateViewingCard(state, cardId) {
-      if(state.viewingCard === cardId) {
-        state.viewingCard = null;
-      }
-      else {
-        state.viewingCard = cardId;
-      }
-    },
-  },
+  mutations: mutations,
 });
