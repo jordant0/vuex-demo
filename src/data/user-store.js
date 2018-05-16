@@ -1,4 +1,4 @@
-import { users, currentUserId } from '@/data/data.js';
+import { users, currentUserId } from '@/data/data';
 
 export const userStore = {
   state() {

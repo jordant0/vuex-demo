@@ -1,5 +1,5 @@
 <script>
-  import NewTopicModal from '@/components/NewTopicModal';
+  import NewTopicModal from '@/components/new-topic-modal';
 
   export default {
     name: 'NewTopicButton',

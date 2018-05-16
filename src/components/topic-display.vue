@@ -1,7 +1,7 @@
 <script>
   import { mapGetters, mapMutations } from 'vuex';
-  import TopicList from '@/components/TopicList';
-  import TopicSort from '@/components/TopicSort';
+  import TopicList from '@/components/topic-list';
+  import TopicSort from '@/components/topic-sort';
 
   export default {
     name: 'TopicDisplay',

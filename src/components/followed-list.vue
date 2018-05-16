@@ -1,6 +1,6 @@
 <script>
   import { mapGetters } from 'vuex';
-  import FollowedUser from '@/components/FollowedUser';
+  import FollowedUser from '@/components/followed-user';
 
   export default {
     name: 'FollowedList',

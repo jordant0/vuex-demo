@@ -1,7 +1,7 @@
 <script>
   import { store } from '@/data/store';
-  import Sidebar from '@/components/Sidebar';
-  import NewTopicButton from '@/components/NewTopicButton';
+  import Sidebar from '@/components/sidebar';
+  import NewTopicButton from '@/components/new-topic-button';
 
   export default {
     name: 'App',

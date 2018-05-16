@@ -1,5 +1,5 @@
 <script>
-  import TopicDisplay from '@/components/TopicDisplay';
+  import TopicDisplay from '@/components/topic-display';
 
   export default {
     name: 'Home',

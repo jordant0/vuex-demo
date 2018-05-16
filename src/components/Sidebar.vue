@@ -1,6 +1,6 @@
 <script>
-  import CurrentProfile from '@/components/CurrentProfile';
-  import FollowedList from '@/components/FollowedList';
+  import CurrentProfile from '@/components/current-profile';
+  import FollowedList from '@/components/followed-list';
 
   export default {
     name: 'Sidebar',

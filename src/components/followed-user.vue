@@ -1,5 +1,5 @@
 <script>
-  import UserFollow from '@/components/UserFollow';
+  import UserFollow from '@/components/user-follow';
 
   export default {
     name: 'FollowedUser',

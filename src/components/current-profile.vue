@@ -1,7 +1,7 @@
 <script>
   import { mapGetters } from 'vuex';
-  import CurrentUserMarker from '@/components/CurrentUserMarker';
-  import ProfileEdit from '@/components/ProfileEdit';
+  import CurrentUserMarker from '@/components/current-user-marker';
+  import ProfileEdit from '@/components/profile-edit';
 
   export default {
     name: 'CurrentProfile',

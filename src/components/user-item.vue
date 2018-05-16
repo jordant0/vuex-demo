@@ -1,8 +1,8 @@
 <script>
   import { mapMutations } from 'vuex';
-  import UserFollow from '@/components/UserFollow';
-  import UserCard from '@/components/UserCard';
   import faker from 'faker';
+  import UserFollow from '@/components/user-follow';
+  import UserCard from '@/components/user-card';
 
   export default {
     name: 'UserItem',

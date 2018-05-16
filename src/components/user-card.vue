@@ -1,6 +1,6 @@
 <script>
-  import CurrentUserMarker from '@/components/CurrentUserMarker';
-  import UserFollow from '@/components/UserFollow';
+  import CurrentUserMarker from '@/components/current-user-marker';
+  import UserFollow from '@/components/user-follow';
 
   export default {
     name: 'UserCard',

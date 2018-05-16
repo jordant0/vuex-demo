@@ -1,6 +1,6 @@
 import Vue from 'vue';
-import { topics } from '@/data/data.js';
-import { api } from '@/data/api.js';
+import { topics } from '@/data/data';
+import { api } from '@/data/api';
 
 export const topicStore = {
   state() {

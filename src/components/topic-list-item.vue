@@ -1,7 +1,7 @@
 <script>
-  import CurrentUserMarker from '@/components/CurrentUserMarker';
-  import UserItem from '@/components/UserItem';
-  import TopicActions from '@/components/TopicActions';
+  import CurrentUserMarker from '@/components/current-user-marker';
+  import UserItem from '@/components/user-item';
+  import TopicActions from '@/components/topic-actions';
 
   export default {
     name: 'TopicList',

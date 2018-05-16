@@ -1,6 +1,6 @@
 <script>
   import { mapMutations } from 'vuex';
-  import TopicRating from '@/components/TopicRating';
+  import TopicRating from '@/components/topic-rating';
 
   export default {
     name: 'TopicActions',

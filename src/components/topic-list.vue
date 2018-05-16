@@ -1,5 +1,5 @@
 <script>
-  import TopicListItem from '@/components/TopicListItem';
+  import TopicListItem from '@/components/topic-list-item';
 
   export default {
     name: 'TopicList',
