@@ -27,14 +27,16 @@ export const topicStore = {
           end = start + rootState.perPage,
           topics = getters.nonStickiedTopic;
 
-      topics = topics.sort((topicA, topicB) => {
-        if(sort === '0') {
-          return new Date(topicB.createdAt) - new Date(topicA.createdAt);
-        }
-        else {
-          return topicB.points - topicA.points;
-        }
-      });
+      if(sort === '0' || sort === '1') {
+        topics = topics.sort((topicA, topicB) => {
+          if(sort === '0') {
+            return new Date(topicB.createdAt) - new Date(topicA.createdAt);
+          }
+          else {
+            return topicB.points - topicA.points;
+          }
+        });
+      }
 
       return topics.slice(start, end);
     },

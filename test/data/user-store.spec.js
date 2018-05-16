@@ -1,10 +1,11 @@
 import { userStore } from '@/data/user-store'
 
 describe('user store', () => {
-  let state,
-      users = {};
+  let state;
 
   beforeEach(() => {
+    const users = {};
+
     for (var i = 1; i <= 4; ++i) {
       users[i] = {
         id: i,
@@ -39,10 +40,9 @@ describe('user store', () => {
     });
 
     it('followed users', () => {
-      const followedUsers = userStore.getters.followedUsers(state),
-            followedIds = followedUsers.map(user => user.id);
+      const followedIds = userStore.getters.followedUsers(state).map(user => user.id);
 
-      expect(followedUsers.length).toEqual(2);
+      expect(followedIds.length).toEqual(2);
       expect(followedIds).toContain(1);
       expect(followedIds).toContain(3);
     });
