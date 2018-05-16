@@ -1,4 +1,4 @@
-require('@/data/api')
+require('@/scripts/api')
 
 import Vue from 'vue'
 import Router from 'vue-router'
