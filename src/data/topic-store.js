@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import { topics } from '@/data/data';
-import { api } from '@/data/api';
 
 export const topicStore = {
   state() {
@@ -68,7 +67,7 @@ export const topicStore = {
   actions: {
     addTopic({ commit }, topicData) {
       return new Promise((resolve, reject) => {
-        api.postNewTopic(topicData)
+        Api.postNewTopic(topicData)
         .then(
           response => {  // success
             commit('addTopic', response.topic);

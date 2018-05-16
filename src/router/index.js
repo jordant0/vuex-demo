@@ -1,3 +1,5 @@
+require('@/data/api')
+
 import Vue from 'vue'
 import Router from 'vue-router'
 import Vuetify from 'vuetify'

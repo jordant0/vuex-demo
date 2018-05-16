@@ -4,7 +4,7 @@ const SUBJECT_LIMIT = 5;
 const POST_LIMIT = 10;
 const TIMEOUT = 1000;
 
-export const api = {
+window.Api = {
   postNewTopic(topic, successCallback, failureCallback) {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
