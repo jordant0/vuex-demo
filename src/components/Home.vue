@@ -8,7 +8,7 @@
       title: 'Vuex Demo',
       link: [
         { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' },
-        { rel: 'shortcut icon', type: 'image/png', href: '/static/favicon.png' },
+        { rel: 'shortcut icon', type: 'image/png', href: '/static/favicon.png?v=5' },
       ]
     },
 
