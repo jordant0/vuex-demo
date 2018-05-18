@@ -44,7 +44,6 @@ describe('profile edit', () => {
   });
 
   it('set user data', () => {
-    // wrapper.find('.stub-vuetify-text-field').trigger('input', 'Jane');
     wrapper.vm.userData = 'Jane';
     expect($store.commit).toBeCalledWith('updateUserData', {
       userId: 4567,
