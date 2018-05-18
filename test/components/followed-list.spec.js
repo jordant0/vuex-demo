@@ -3,7 +3,7 @@ import { shallow } from '@vue/test-utils'
 import FollowedList from '@/components/followed-list'
 
 describe('current profile', () => {
-  it('redners correctly', () => {
+  it('renders correctly', () => {
     let $store, wrapper;
 
     $store = {

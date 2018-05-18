@@ -9,6 +9,7 @@ const vuetifyComponents = [
   'v-card-title',
   'v-dialog',
   'v-form',
+  'v-icon',
   'v-snackbar',
   'v-text-field',
 ];

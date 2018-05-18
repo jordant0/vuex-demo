@@ -1,26 +1,34 @@
 require('../test-config')
-import { shallow } from '@vue/test-utils'
+import { shallow, createLocalVue } from '@vue/test-utils'
+import Vuex from 'vuex'
 import CurrentProfile from '@/components/current-profile'
 
-describe('current profile', () => {
-  it('redners correctly', () => {
-    let $store, wrapper;
+const localVue = createLocalVue()
 
-    $store = {
-      getters: {
-        currentUser: {
+localVue.use(Vuex)
+
+describe('current profile', () => {
+  it('renders correctly', () => {
+    let getters, store, wrapper;
+
+    getters = {
+      currentUser() {
+        return {
           avatar: '/assets/avatar.png',
           firstName: 'John',
           lastName: 'Doe',
           followers: 123,
-        }
+        };
       },
     };
 
+    store = new Vuex.Store({
+      getters
+    })
+
     wrapper = shallow(CurrentProfile, {
-      mocks: {
-        $store
-      },
+      store,
+      localVue
     });
 
     expect(wrapper.find('.user-profile_avatar img').attributes().src).toEqual('/assets/avatar.png');
