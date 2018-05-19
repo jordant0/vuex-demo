@@ -181,7 +181,7 @@ describe('topic store', () => {
       };
     });
 
-    it('toggle follow success', () => {
+    it('add topic success', () => {
       const topicData = { id: 12345, valid: true };
 
       expect.assertions(2);
@@ -194,7 +194,7 @@ describe('topic store', () => {
       );
     });
 
-    it('toggle follow failure', () => {
+    it('add topic failure', () => {
       const topicData = { id: 12345, valid: false };
 
       expect.assertions(2);
