@@ -1,4 +1,4 @@
-import { userStore } from '@/data/user-store'
+import { userStore } from '@/store/user-store'
 
 describe('user store', () => {
   let state;

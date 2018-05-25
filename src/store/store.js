@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { userStore } from '@/data/user-store';
-import { topicStore } from '@/data/topic-store';
+import { userStore } from '@/store/user-store';
+import { topicStore } from '@/store/topic-store';
 
 Vue.use(Vuex);
 

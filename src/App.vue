@@ -1,5 +1,5 @@
 <script>
-  import { store } from '@/data/store';
+  import { store } from '@/store/store';
   import Sidebar from '@/components/sidebar';
   import NewTopicButton from '@/components/new-topic-button';
 

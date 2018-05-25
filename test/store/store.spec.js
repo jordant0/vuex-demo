@@ -1,4 +1,4 @@
-import { mutations } from '@/data/store'
+import { mutations } from '@/store/store'
 
 describe('store', () => {
   let state;

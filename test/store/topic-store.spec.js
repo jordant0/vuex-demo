@@ -1,4 +1,4 @@
-import { topicStore } from '@/data/topic-store'
+import { topicStore } from '@/store/topic-store'
 
 describe('topic store', () => {
   let state, topics;

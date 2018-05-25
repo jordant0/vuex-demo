@@ -1,4 +1,4 @@
-import { users, currentUserId } from '@/data/data';
+import { users, currentUserId } from '@/api/data';
 
 export const userStore = {
   state() {
@@ -23,6 +23,12 @@ export const userStore = {
   },
 
   mutations: {
+    updateUserData(state, payload) {
+      var user = state.list[payload.userId];
+
+      user[payload.field] = payload.value;
+    },
+
     toggleFollow(state, payload) {
       var user = state.list[payload.userId],
           currentUser = payload.currentUser;
@@ -37,12 +43,6 @@ export const userStore = {
         user.followers--;
         currentUser.following--;
       }
-    },
-
-    updateUserData(state, payload) {
-      var user = state.list[payload.userId];
-
-      user[payload.field] = payload.value;
     },
   },
 
